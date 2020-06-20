@@ -2,7 +2,7 @@ import React from 'react';
 // import ReactDOM from 'react-dom';
 import './Profile.css';
 
-const Profile = (props) => {
+const Profile = ({props}) => {
     return(
         <div className='Profile'>
         <div className='description-container'>
@@ -28,7 +28,6 @@ const Profile = (props) => {
             </ul>
         </div>
     </div>
-        
     );
 }
 

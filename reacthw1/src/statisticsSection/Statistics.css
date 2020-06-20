@@ -1,3 +1,6 @@
+
+
+/* стили полное дерьмо. лучше даже не разбираться)) */
 .Statistics{
     width: 40%;
     margin: auto;
@@ -27,7 +30,8 @@
     justify-content: space-around;
     align-items: flex-start;
 }
-.item{
+
+.StatisticsItem{
     display: inline-block;
     text-align: center;
 }

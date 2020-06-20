@@ -1,13 +1,12 @@
 import React from 'react';
 import './Statistics.css';
 
-///создает список с помощью перебирания.
-const StatList = (props) =>{
-    return(
-<ul className= 'statistics-list'>
+///элементы списка перебираю и получается конфетка
 
-    {props.map(prop =>(
-    <li className="item">
+const StatisticsItems = ({props}) =>{
+    return(
+    props.map(prop=>(
+        <li key={prop.id} className="StatisticsItem" >
         <span className='label'>
         {prop.label}
         </span>
@@ -15,26 +14,28 @@ const StatList = (props) =>{
         {prop.percentage}%
         </span>
     </li>
-    ))}
-
-</ul>
+    ))
     )
 }
 //////////\
 
 ////основная функция
-const Statistics = (title,props) =>{
+const Statistics = ({ title, props }) =>{
+    console.log('props :>> ', props);
     return(
     <div className='Statistics'>
         <div className='title-container'>
             <span className="title">{title}</span>
         </div>
         <div className="statistics-container">
-                {StatList(props)}
+            <ul className= 'statistics-list'>
+                <StatisticsItems props={props}/>
+            </ul>
         </div>
     </div>
     )
 }
+
 
 // ReactDOM.render(Statistics(data),document.querySelector('#root'))
 export default Statistics;
