@@ -14,7 +14,7 @@ import FriendList from './FriendList/FriendList';
 import friendsData from './FriendList/friends.json';
 //
 //transaction history
-import TransactionHistory from './Transactions/Transctions';
+import TransactionHistory from './Transactions/Transactions';
 import transactions from './Transactions/transactions.json';
 //
 //отрисовываю все задания сразу
@@ -22,10 +22,15 @@ import transactions from './Transactions/transactions.json';
 
 ReactDOM.render(
     <>
-        <Profile props={user}/>
-        <Statistics title='Upload stats' props={data}/>
-        <FriendList props={friendsData}/>
-        <TransactionHistory props={transactions} />
+        <Profile avatar={user.avatar} 
+        name={user.name} 
+        tag={user.tag}
+        location={user.location} 
+        stats={user.stats}
+        />
+        <Statistics title='Upload stats' stats={data}/>
+        <FriendList friends={friendsData}/>
+        <TransactionHistory items={transactions} />
     </>
     ,document.querySelector('#root'))
 
