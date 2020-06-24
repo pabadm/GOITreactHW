@@ -1,38 +1,36 @@
-.FriendList-container{
-    margin-bottom: 2rem !important;
-    width: 40%;
-    margin: auto;
+.FriendList-container {
+  margin-bottom: 2rem !important;
+  width: 40%;
+  margin: auto;
 }
-.FriendList-list{
-    font-size: 2rem;
-    margin-top: auto;
-    margin-bottom: auto;
-    display: flex;
-    flex-flow: column wrap;
-    justify-content: center;
-    align-items: center;
+.FriendList-list {
+  font-size: 2rem;
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
 }
-.Friend{
-    list-style-position: inside;
-    text-align: center;
-    vertical-align: middle;
+.Friend {
+  list-style-position: inside;
+  text-align: center;
+  vertical-align: middle;
 }
-.Friend-online{
-    /* color: red; */
-    color: lightgreen;
+.Friend-online {
+  /* color: red; */
+  color: lightgreen;
 }
-.Friend-offline{
-    color: red;
-}
-
-.friend-avatar{
-    display: inline-block;
-    border-radius: 50%;
-}
-.friend-name{
-
-    font-size: 1rem;
-    color: black;
-    display: inline;
+.Friend-offline {
+  color: red;
 }
 
+.friend-avatar {
+  display: inline-block;
+  border-radius: 50%;
+}
+.friend-name {
+  font-size: 1rem;
+  color: black;
+  display: inline;
+}

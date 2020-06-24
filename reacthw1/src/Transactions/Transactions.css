@@ -1,14 +1,14 @@
-.TransactionHistory{
-    border-collapse: collapse;
-    border: 3px solid black;
-    width: 60%;
-    margin: auto;
-    text-align: center;
+.TransactionHistory {
+  border-collapse: collapse;
+  border: 3px solid black;
+  width: 60%;
+  margin: auto;
+  text-align: center;
 }
-th{
-    border:3px solid black;
-    background-color: lightblue;
+th {
+  border: 3px solid black;
+  background-color: lightblue;
 }
-td{
-    border: 1px solid black;
+td {
+  border: 1px solid black;
 }

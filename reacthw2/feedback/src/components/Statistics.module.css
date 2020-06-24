@@ -1,60 +1,60 @@
-.Section{
-    width: 40%;
-    margin: auto;
-    text-align: center;
+.Section {
+  width: 40%;
+  margin: auto;
+  text-align: center;
 }
-.title{
-    display: block;
-    font-size: 1.3rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-
-.feedback-options{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: flex-start;
-    margin-bottom: 1rem;
+.title {
+  display: block;
+  font-size: 1.3rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-.btn{
-    border: 0;
-    border-radius: 2rem;
-    display: block;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-}
-.btn:first-child{
-    background-color: lightblue;
-}
-.btn:nth-child(2){
-    background-color: palegoldenrod;    
-}
-.btn:last-child{
-    background-color: pink;
+.feedback-options {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin-bottom: 1rem;
 }
 
-.Statistics{
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+.btn {
+  border: 0;
+  border-radius: 2rem;
+  display: block;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+.btn:first-child {
+  background-color: lightblue;
+}
+.btn:nth-child(2) {
+  background-color: palegoldenrod;
+}
+.btn:last-child {
+  background-color: pink;
 }
 
-.stat{
-    color: indianred;
-    font-size: 1.2rem;
+.Statistics {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }
-.stat:nth-child(n+4){
-    margin-top: 0.5rem;
-    text-align: center;
-    color: black;
-    width: 100%;
-    text-align: left;
-    font-size: 1.3rem;    
-    font-weight: 500;
+
+.stat {
+  color: indianred;
+  font-size: 1.2rem;
 }
-.noFeedback{
-    color: indianred;
-    font-size: 1.2rem;
+.stat:nth-child(n + 4) {
+  margin-top: 0.5rem;
+  text-align: center;
+  color: black;
+  width: 100%;
+  text-align: left;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.noFeedback {
+  color: indianred;
+  font-size: 1.2rem;
 }
