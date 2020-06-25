@@ -16,6 +16,7 @@ const Contact = ({ name, number, deleteContact }) => {
     </li>
   );
 };
+console.log(hello);
 // компонент формы доавления контактов принимает пару коллбеков, номер и телефон
 const ContactForm = ({ name, number, handleChange, handleSubmit }) => {
   return (
