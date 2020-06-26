@@ -1,20 +1,33 @@
-import React from "react";
-// import ReactDOM from 'react-dom';
+import React from 'react';
 
-// import shortid from 'shortid';
-import shortid from "shortid";
+import shortid from 'shortid';
 
-//компонент контакта принимает только номер и имя
+import PropTypes from 'prop-types';
+
+import alertCall from 'sweetalert';
+
+//  компонент контакта принимает только номер и имя
+
 const Contact = ({ name, number, deleteContact }) => {
   return (
     <li className="Contact">
-      <span className="contact-name">{name + ": "}</span>
+      <span className="contact-name">{`${name}: `}</span>
       <span className="contact-number">{number}</span>
       <button type="button" onClick={deleteContact}>
         delete
       </button>
     </li>
   );
+};
+Contact.defaultProps = {
+  name: 'name',
+  number: 'number',
+  deleteContact: null,
+};
+Contact.propTypes = {
+  name: PropTypes.string,
+  number: PropTypes.string,
+  deleteContact: PropTypes.func,
 };
 
 // компонент формы доавления контактов принимает пару коллбеков, номер и телефон
@@ -41,7 +54,19 @@ const ContactForm = ({ name, number, handleChange, handleSubmit }) => {
   );
 };
 
-//компонент поиска принимает коллбек и значение фильтра
+ContactForm.defaultProps = {
+  name: 'name',
+  number: 'number',
+  handleChange: null,
+  handleSubmit: null,
+};
+ContactForm.propTypes = {
+  name: PropTypes.string,
+  number: PropTypes.string,
+  handleChange: PropTypes.func,
+  handleSubmit: PropTypes.func,
+};
+// компонент поиска принимает коллбек и значение фильтра
 const Filter = ({ filter, handleChange }) => {
   return (
     <input
@@ -53,56 +78,71 @@ const Filter = ({ filter, handleChange }) => {
     />
   );
 };
+
+Filter.defaultProps = {
+  filter: 'filter',
+  handleChange: null,
+};
+Filter.propTypes = {
+  filter: PropTypes.string,
+  handleChange: PropTypes.func,
+};
+
 // классовый компонент
 class Phonebook extends React.Component {
-  state = {
-    contacts: [
-      { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-      { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-      { id: "id-3", name: "Eden Clements", number: "645-17-79" },
-      { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
-    ],
-    name: "",
-    number: "",
-    filter: "",
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      contacts: [
+        { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+        { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+        { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+        { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+      ],
+      name: '',
+      number: '',
+      filter: '',
+    };
+  }
 
   handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
   };
 
-  handleSubmit = (evt) => {
+  handleSubmit = evt => {
     const { name, number, contacts } = this.state;
     evt.preventDefault();
-    this.setState({ name: "", number: "" });
-    //проверка на существующий контакт
+    this.setState({ name: '', number: '' });
+    // проверка на существующий контакт
     if (
       contacts.find(
-        (contact) => contact.name.toLowerCase() === name.toLowerCase()
+        contact => contact.name.toLowerCase() === name.toLowerCase(),
       ) !== undefined
     ) {
-      alert("you have already added this contact");
+      alertCall('you have already added this contact');
       return;
     }
 
-    if (name !== "" && number !== "") {
+    if (name !== '' && number !== '') {
       contacts.push({ name: this.state.name, number: this.state.number });
     }
   };
+
   //
   deleteContact = ({ target }) => {
     const { contacts } = this.state;
-    const newContacts = [...contacts];
 
-    //ищу по номеру телефона пока что
+    // ищу по номеру телефона пока что
     const deletingContact = contacts.find(
-      (contact) => contact.number === target.previousSibling.textContent
+      contact => contact.number === target.previousSibling.textContent,
     );
     //
-    newContacts.splice(contacts.indexOf(deletingContact),1)
-    this.setState({ contacts: newContacts });
+    this.setState({
+      contacts: contacts.filter(contact => contact !== deletingContact),
+    });
   };
+
   //
   render() {
     const { contacts, filter, name, number } = this.state;
@@ -124,7 +164,7 @@ class Phonebook extends React.Component {
 
         <ul className="contact-list">
           {contacts.map(
-            (contact) =>
+            contact =>
               contact.name.toLowerCase().includes(filter.toLowerCase()) && (
                 <Contact
                   key={shortid.generate()}
@@ -132,7 +172,7 @@ class Phonebook extends React.Component {
                   number={contact.number}
                   deleteContact={this.deleteContact}
                 />
-              )
+              ),
           )}
         </ul>
       </div>
