@@ -6,7 +6,8 @@
 /node_modules
 /.pnp
 .pnp.js
-
+/lessons
+/webpack-react-education-kit
 # testing
 /coverage
 
