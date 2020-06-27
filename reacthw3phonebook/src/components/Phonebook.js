@@ -115,6 +115,24 @@ class Phonebook extends React.Component {
       filter: '',
     };
   }
+  // сохраняю в локальное хранилище
+
+  componentDidMount() {
+    const { contacts } = this.state;
+
+    if (localStorage.getItem('contacts') === null) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    } else {
+      const savedContacts = JSON.parse(localStorage.getItem('contacts'));
+      this.setState({ contacts: savedContacts });
+    }
+  }
+
+  componentDidUpdate() {
+    const { contacts } = this.state;
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }
+  //
 
   handleChange = ({ target }) => {
     const { name, value } = target;
