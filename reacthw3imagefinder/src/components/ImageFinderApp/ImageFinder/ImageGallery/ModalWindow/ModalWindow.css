@@ -1,0 +1,28 @@
+
+
+
+.ModalWindow {
+  width: 100vw;
+  height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+
+  z-index: 20;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.ModalWindow-img {
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  top: 50%;
+  bottom: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  height: 80%;
+
+  border: 0;
+  border-radius: 2rem;
+}

@@ -1,0 +1,14 @@
+.LoadMore {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.LoadMore-button {
+  padding: 1.5rem;
+  border: 0;
+  border-radius: 2rem;
+  background-color: rgb(129, 184, 0);
+}
+.LoadMore-button:hover{
+  background-color: rgb(146, 207, 4);
+}

@@ -1,0 +1,11 @@
+.message{
+  /* text-align: cente
+   */
+  display: block;
+  margin: auto;
+  text-align: center;
+  margin-top: 3rem;
+}
+/* .message:nth-child(2){
+  margin-top: 0.5rem;
+} */

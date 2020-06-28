@@ -1,0 +1,38 @@
+.SearchBar {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  display: block;
+}
+.SearchForm {
+  display: block;
+  margin: auto;
+  width: 40%;
+  height: 2rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.input{
+  border: 0;
+  outline: 0;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  color: #000;
+}
+
+.SearchForm-input {
+  padding-left: 1rem;
+  border-top-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+  background-color: rgb(206, 74, 74);
+}
+
+.SearchForm-submit {
+  background-color: cadetblue;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
