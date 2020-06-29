@@ -1,41 +1,50 @@
-import React, { Component } from "react";
-// для перерисовки не всех картинок сразу
+import React, { Component } from 'react';
 
-import SearchBar from "./SearchBar/SearchBar";
+import PropTypes from 'prop-types';
 
-import "./ImageSearcher.css";
+import SearchBar from './SearchBar/SearchBar';
+
+import './ImageSearcher.css';
 
 class ImageSearcher extends Component {
-  state = {
-    query: "",
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: '',
+    };
+  }
 
+  // изменяет query, чтобы обновлять поле поиска
   handleChange = ({ target }) => {
     this.setState({ query: target.value });
   };
 
-  handleSubmit = (evt) => {
+  // передает подтвержденный query родителю с помощью его метода для перерисовки
+  handleSubmit = evt => {
     evt.preventDefault();
-    
-    const { updateSubmitedQuery } = this.props;
 
+    const { updateSubmitedQuery } = this.props;
     const { query } = this.state;
 
-
     updateSubmitedQuery(query);
-
   };
 
   render() {
     const { query } = this.state;
     return (
-        <SearchBar
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-          query={query}
-        />
+      <SearchBar
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+        query={query}
+      />
     );
   }
 }
 
+ImageSearcher.propTypes = {
+  updateSubmitedQuery: PropTypes.func,
+};
+ImageSearcher.defaultProps = {
+  updateSubmitedQuery: null,
+};
 export default ImageSearcher;

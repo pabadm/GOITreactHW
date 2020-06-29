@@ -1,90 +1,104 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import axios from "axios";
+import PropTypes from 'prop-types';
 
-import ImageGallery from "./ImageGallery/ImageGallery";
+import ImageGallery from './ImageGallery/ImageGallery';
 
-import LoadMore from "./LoadMore/LoadMore";
+import LoadMore from './LoadMore/LoadMore';
 
-import useApi from "../api/useApi";
+import useApi from '../api/useApi';
 
-import './ImageFinder.css'
+import './ImageFinder.css';
 
 class ImageFinder extends Component {
-  state = {
-    photos: [],
-    page: 1,
-    error: false,
-    isLoading: true,
-    totalHits: 500,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      photos: [],
+      page: 1,
+      error: false,
+      isLoading: true,
+      totalHits: 500,
+    };
+  }
 
   addPage = () => {
-    // this.props.toUpdate = true;
-    this.setState({ page: this.state.page + 1 });
-    this.props.updateComponent();
-  };
-
-  componentDidMount = () => {
+    const { updateComponent } = this.props;
     const { page } = this.state;
-    const { submitedQuery } = this.props;
-    this.setState({ isLoading: true });
-
-    axios
-      .get(useApi(submitedQuery, page))
-      .then((response) => this.setState({ photos: response.data.hits }))
-      .catch((err) => this.setState({ error: err }))
-      .finally(() => this.setState({ isLoading: false }));
+    // this.props.toUpdate = true;
+    this.setState({ page: page + 1 }, updateComponent());
   };
 
-  componentDidUpdate = () => {
-    // console.log("updated :>> ");
+  componentDidMount = async () => {
+    this.setState({ isLoading: true });
+    // чтобы юзались данные по умолчанию
+    const data = await useApi();
+
+    if (data.total !== undefined) {
+      this.setState({
+        totalHits: data.totalHits,
+        photos: data.hits,
+        isLoading: false,
+      });
+    } else {
+      this.setState({ error: data, isLoading: false });
+    }
+  };
+
+  // отрисовываю картинки с помощью этого, только в конце понял, что .
+  // это полнейшая дичь. Родитель обновляет компонент, а он проверяет
+  // стоит ли ему отрисовывать картинки прямо во время обновления.
+  // очень тупо вышло. из-за этого передавал целую кучу в пропсах
+  componentDidUpdate = async () => {
     const { submitedQuery, toUpdate, stopUpdating, toResetPages } = this.props;
     const { page, photos } = this.state;
-    console.log(toUpdate);
-    console.log("this.state.toResetPages :>> ", this.state.toResetPages);
     if (toUpdate) {
-      if (toResetPages) {
-        this.setState({ page: 1 });
+      const data = await useApi(submitedQuery, !toResetPages && page);
+
+      if (data.total !== undefined) {
+        this.setState(
+          {
+            isLoading: false,
+            totalHits: data.totalHits,
+            photos: toResetPages ? data.hits : photos.concat(data.hits),
+            page: toResetPages ? 1 : page,
+          },
+          stopUpdating(),
+        );
+      } else {
+        this.setState({ error: data, isLoading: false }, stopUpdating());
       }
-      stopUpdating();
-
-      this.setState({ isLoading: true, error: false });
-
-      axios
-        .get(useApi(submitedQuery, toResetPages ? 1 : page))
-        .then((response) =>
-          this.setState({
-            totalHits: response.data.totalHits,
-            photos: toResetPages
-              ? response.data.hits
-              : photos.concat(response.data.hits),
-          })
-        )
-        .catch((err) => this.setState({ error: err }))
-        .finally(() => this.setState({ isLoading: false }));
     }
   };
 
   render() {
-    const { photos, error, isLoading,totalHits,page } = this.state;
-    // const { submitedQuery } = this.props;
+    const { photos, error, isLoading, totalHits, page } = this.state;
     return (
       <>
-        {error && <span className='message'>Whoops, something went wrong: {error.message}</span>}
+        {error && (
+          <span className="message">
+            Whoops, something went wrong: {error.message}
+          </span>
+        )}
 
-        {isLoading && <span className='message'>Loading...</span>}
+        {isLoading && <span className="message">Loading...</span>}
 
         {photos.length > 0 ? (
           <ImageGallery photos={photos} />
         ) : (
-          <span className='message'>No images found</span>
+          <span className="message">No images found</span>
         )}
-        {totalHits>page*12 && <LoadMore handleClick={this.addPage} />}
-        
+        {totalHits > page * 12 && <LoadMore handleClick={this.addPage} />}
       </>
     );
   }
 }
-
+ImageFinder.propTypes = {
+  submitedQuery: PropTypes.string,
+  toUpdate: PropTypes.bool,
+  stopUpdating: PropTypes.func,
+  updateComponent: PropTypes.func,
+  toResetPages: PropTypes.bool,
+};
+ImageFinder.defaultProps = null;
 export default ImageFinder;
