@@ -2,101 +2,15 @@ import React from 'react';
 
 import shortid from 'shortid';
 
-import PropTypes from 'prop-types';
-
 import alertCall from 'sweetalert';
 
 import './Phonebook.css';
-//  компонент контакта принимает только номер и имя
 
-const Contact = ({ id, name, number, deleteContact }) => {
-  return (
-    <li id={id} className="Contact">
-      <span className="contact-name">{`${name}: `}</span>
-      <span className="contact-number">{number}</span>
-      <button className="contact-delete" type="button" onClick={deleteContact}>
-        delete
-      </button>
-    </li>
-  );
-};
-Contact.defaultProps = {
-  name: 'name',
-  number: 'number',
-  deleteContact: null,
-  id: null,
-};
-Contact.propTypes = {
-  name: PropTypes.string,
-  number: PropTypes.string,
-  deleteContact: PropTypes.func,
-  id: PropTypes.string,
-};
+import Contact from './Contact/Contact';
 
-// компонент формы доавления контактов принимает пару коллбеков, номер и телефон
-// отрисовывает все динамически
+import ContactForm from './ContactForm/ContactForm';
 
-const ContactForm = ({ name, number, handleChange, handleSubmit }) => {
-  return (
-    <form className="Contact-form" onSubmit={handleSubmit}>
-      <input
-        className="name-input input"
-        type="text"
-        name="name"
-        placeholder="enter the name"
-        value={name}
-        onChange={handleChange}
-      />
-
-      <input
-        className="number-input input"
-        type="text"
-        name="number"
-        placeholder="enter the number"
-        value={number}
-        onChange={handleChange}
-      />
-      <input className="submit-input input" type="submit" value="submit" />
-    </form>
-  );
-};
-
-ContactForm.defaultProps = {
-  name: 'name',
-  number: 'number',
-  handleChange: null,
-  handleSubmit: null,
-};
-ContactForm.propTypes = {
-  name: PropTypes.string,
-  number: PropTypes.string,
-  handleChange: PropTypes.func,
-  handleSubmit: PropTypes.func,
-};
-
-// компонент поиска принимает коллбек и значение фильтра
-
-const Filter = ({ filter, handleChange }) => {
-  return (
-    <input
-      className="Filter"
-      type="text"
-      name="filter"
-      placeholder="search your contacts"
-      value={filter}
-      onChange={handleChange}
-    />
-  );
-};
-
-Filter.defaultProps = {
-  filter: 'filter',
-  handleChange: null,
-};
-Filter.propTypes = {
-  filter: PropTypes.string,
-  handleChange: PropTypes.func,
-};
+import Filter from './Filter/Filter';
 
 // классовый компонент телефонной книги все всем передает
 

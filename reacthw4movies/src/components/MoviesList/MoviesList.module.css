@@ -1,0 +1,20 @@
+.MoviesList{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Movie{
+  width: 22%;
+}
+
+.Movie-poster{
+
+}
+.Movie-poster-img{
+  width: 100%;
+}
+.Movie-title{
+
+}
