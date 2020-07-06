@@ -11,9 +11,16 @@ import MoviesSearcher from "./components/MoviesSearcher/MoviesSearcher";
 const App = () => {
   return (
     <Switch>
-      <Route path="/" exact component={HomePage} />
-      <Route path="/search" component={MoviesSearcher} />
-      <Redirect to="/" />
+      <Route
+        path="/GOITreactHW/reacthw4movies/build/"
+        exact
+        component={HomePage}
+      />
+      <Route
+        path="GOITreactHW/reacthw4movies/build/search"
+        component={MoviesSearcher}
+      />
+      <Redirect to="/GOITreactHW/reacthw4movies/build/" />
     </Switch>
   );
 };
