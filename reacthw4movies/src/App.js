@@ -8,6 +8,7 @@ import HomePage from './components/HomePage/HomePage';
 import MoviesSearcher from './components/MoviesSearcher/MoviesSearcher';
 
 import Navigation from './components/Navigation/Navigation';
+import MovieDetails from './components/MovieDetails/MovieDetails';
 
 const App = () => {
   return (
@@ -15,7 +16,8 @@ const App = () => {
       <Route component={Navigation} />
       <Switch>
         <Route path="/Home" exact component={HomePage} />
-        <Route path="/search" component={MoviesSearcher} />
+        <Route path="/Search" component={MoviesSearcher} />
+        <Route path="/Details" component={MovieDetails} />
         <Redirect to="/Home" />
       </Switch>
     </BrowserRouter>

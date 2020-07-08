@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import SearchBar from '../secondary/SearchBar/SearchBar';
 
-class Navigation extends Component {
+export default class Navigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,6 +19,7 @@ class Navigation extends Component {
     evt.preventDefault();
     const { query } = this.state;
     const { history } = this.props;
+    this.setState({ query: '' });
     if (query !== '') {
       history.push(`/Search?q=${query}&p=1`);
     }
@@ -37,5 +38,3 @@ class Navigation extends Component {
     );
   }
 }
-
-export default Navigation;

@@ -17,6 +17,13 @@ const getApiData = {
       )
       .then(response => response.data);
   },
+  details: id => {
+    return axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${id}?api_key=da3cb846a4228da5ed81f3869652dea8&language=en-US`,
+      )
+      .then(response => response.data);
+  },
 };
 
 export default getApiData;
