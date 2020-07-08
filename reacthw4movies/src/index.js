@@ -1,33 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import React, { StrictMode } from 'react';
+import ReactDOM from 'react-dom';
 
-import "./index.css";
+import './index.css';
 
-import HomePage from "./components/HomePage/HomePage";
-
-import MoviesSearcher from "./components/MoviesSearcher/MoviesSearcher";
-
-const App = () => {
-  return (
-    <Switch>
-      <Route
-        path="/GOITreactHW/reacthw4movies/build/"
-        exact
-        component={HomePage}
-      />
-      <Route
-        path="GOITreactHW/reacthw4movies/build/search"
-        component={MoviesSearcher}
-      />
-      <Redirect to="/GOITreactHW/reacthw4movies/build/" />
-    </Switch>
-  );
-};
+import App from './App';
 
 ReactDOM.render(
-  <BrowserRouter>
+  <StrictMode>
     <App />
-  </BrowserRouter>,
-  document.querySelector("#root")
+  </StrictMode>,
+  document.querySelector('#root'),
 );

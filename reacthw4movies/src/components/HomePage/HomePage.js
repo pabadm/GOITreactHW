@@ -1,65 +1,102 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import queryString from 'query-string';
 
-import getApiData from "../../api/getApiData";
+import getApiData from '../../api/getApiData';
 
-import MoviesList from "../MoviesList/MoviesList";
+import MoviesList from '../secondary/MoviesList/MoviesList';
 
-import LoadMore from "../LoadMore/LoadMore";
+import LoadMore from '../secondary/LoadMore/LoadMore';
 
 export default class HomePage extends Component {
-  state = {
-    page: 1,
-    movies: [],
-    info: {},
-    error: false,
-    isLoading: true,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      movies: [],
+      page: 1,
+      totalPages: 1,
+      error: false,
+      isLoading: true,
+    };
+  }
+
+  componentDidMount() {
+    const { history } = this.props;
+
+    const recievedData = queryString.parse(location.search);
+
+    const { p } = recievedData;
+    const { length } = Object.keys(recievedData);
+
+    if (p !== '' && length !== 0) {
+      this.updateComponent();
+    } else {
+      history.push('/Home?p=1');
+    }
+  }
+
+  componentDidUpdate() {
+    const { page } = this.state;
+
+    const { p } = queryString.parse(location.search);
+
+    if (p !== undefined && page !== Number(p)) {
+      this.updateComponent();
+    }
+  }
 
   updateComponent = async () => {
-    const { page } = this.state;
-    const recievedData = await getApiData.popular(page);
+    const { p } = queryString.parse(location.search);
 
-    this.setState({
-      movies: recievedData.results !== undefined && recievedData.results,
-      info: recievedData.results !== undefined && {
-        totalResults: recievedData.total_results,
-        totalPages: recievedData.total_pages,
-      },
-      error: recievedData === true ? true : false,
-      isLoading: false,
+    await this.setState({
+      isLoading: true,
+      error: false,
+      page: p !== undefined ? Number(p) : 1,
     });
-  };
 
-  addPage = () => {
     const { page } = this.state;
-    this.setState({ isLoading: true, page: page + 1 }, this.updateComponent);
+
+    getApiData
+      .popular(page)
+      .then(data =>
+        this.setState({ movies: data.results, totalPages: data.total_pages }),
+      )
+      .catch(error => this.setState({ error }))
+      .finally(() => this.setState({ isLoading: false }));
   };
 
-  reducePage = () => {
+  handlePageChange = ({ target }) => {
     const { page } = this.state;
-    this.setState({ isLoading: true, page: page - 1 }, this.updateComponent);
-  };
+    const { history } = this.props;
 
-  componentDidMount = () => {
-    console.log("mounted :>> ");
-    this.updateComponent();
+    history.push(
+      `/Home?p=${target.name === 'increment' ? page + 1 : page - 1}`,
+    );
   };
 
   render() {
-    const { movies, error, isLoading, page, info } = this.state;
+    const { movies, error, isLoading, page, totalPages } = this.state;
 
     return (
       <>
         {isLoading && <span>Loading...</span>}
-        {error && <span>something went wrong</span>}
-        {isLoading === false && error === false && (
+        {error && <span>{error.message}</span>}
+        {totalPages < page && !error && <span>No films found</span>}
+        {isLoading === false && !error && (
           <>
             <MoviesList movies={movies} />
-            {page < info.totalPages && (
-              <LoadMore text="Next page" handleClick={this.addPage} />
+            {page < totalPages && (
+              <LoadMore
+                text="Next page"
+                name="increment"
+                handleClick={this.handlePageChange}
+              />
             )}
-            {page !== 1 && (
-              <LoadMore text="Prev page" handleClick={this.reducePage} />
+            {page > 1 && (
+              <LoadMore
+                text="Prev page"
+                name="decrement"
+                handleClick={this.handlePageChange}
+              />
             )}
           </>
         )}
