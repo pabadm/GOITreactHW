@@ -40,10 +40,16 @@ const Movie = ({
             </span>
           )}
         </div>
-        <h4 className={`${styles.text} ${styles['Movie-title']}`}>{title}</h4>
+        <h4
+          onCopy="return false;"
+          className={`${styles.text} ${styles['Movie-title']}`}
+        >
+          {title}
+        </h4>
 
         <div className={styles.blur}>
           <h6
+            onCopy="return false;"
             style={overviewBottomIndent}
             className={`${styles.text} ${styles['blur-overview']}`}
           >
