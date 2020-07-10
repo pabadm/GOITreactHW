@@ -37,7 +37,6 @@ export default class MoviesSearcher extends Component {
     const { query, page } = this.state;
 
     const { q, p } = queryString.parse(location.search);
-
     if (query !== q || (p !== undefined && page !== Number(p))) {
       this.updateComponent();
     }
@@ -45,7 +44,6 @@ export default class MoviesSearcher extends Component {
 
   updateComponent = async () => {
     const { q, p } = queryString.parse(location.search);
-
     await this.setState({
       isLoading: true,
       error: false,

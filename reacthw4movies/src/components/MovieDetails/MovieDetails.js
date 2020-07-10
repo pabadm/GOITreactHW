@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import queryString from 'query-string';
 
 import getApiData from '../../api/getApiData';
-import getPosterLink from '../../api/getPosterLink';
+
+import DetailsShower from '../secondary/DetailsShower/DetailsShower';
 
 export default class MovieDetails extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export default class MovieDetails extends Component {
       title: '',
       overview: '',
       posterPath: '',
+      id: '',
       isLoading: false,
       error: false,
     };
@@ -21,6 +23,7 @@ export default class MovieDetails extends Component {
   }
 
   componentDidUpdate() {
+    this.renderHash();
     const { id } = this.state;
     const { history } = this.props;
     const newId = queryString.parse(location.search).id;
@@ -34,6 +37,7 @@ export default class MovieDetails extends Component {
 
   updateComponent = () => {
     const { id } = queryString.parse(location.search);
+    console.log('q :>> ', queryString.parse(location.hash));
     this.setState({ isLoading: true, error: false, id });
     getApiData
       .details(id)
@@ -48,16 +52,17 @@ export default class MovieDetails extends Component {
       .finally(() => this.setState({ isLoading: false }));
   };
 
+  renderHash = () => {};
+
   render() {
-    const { title, overview, posterPath } = this.state;
+    const { title, overview, posterPath, id } = this.state;
     return (
-      <section>
-        <div>
-          <img src={getPosterLink(posterPath, 500)} alt="img" />
-        </div>
-        <h3>{title}</h3>
-        <p>{overview}</p>
-      </section>
+      <DetailsShower
+        title={title}
+        overview={overview}
+        posterPath={posterPath}
+        id={id}
+      />
     );
   }
 }

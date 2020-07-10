@@ -5,6 +5,8 @@ import PageChanger from './PageChanger/PageChanger';
 import Loader from './Loader/Loader';
 import Message from './Message/Message';
 
+import styles from './MoviesShower.module.css';
+
 const MoviesShower = ({
   movies,
   error,
@@ -15,7 +17,7 @@ const MoviesShower = ({
   handleShowDetails,
 }) => {
   return (
-    <>
+    <section className={styles.MoviesShower}>
       {isLoading && <Loader />}
       {error && <Message msg={error.message} />}
       {totalPages < page && !error && <Message msg="no films found" />}
@@ -29,7 +31,7 @@ const MoviesShower = ({
           />
         </>
       )}
-    </>
+    </section>
   );
 };
 

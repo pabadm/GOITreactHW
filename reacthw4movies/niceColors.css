@@ -1,0 +1,32 @@
+/* dark theme */
+body{
+  /* black */
+  color: #404552;
+  color: #383c4a;
+  color: #353945;
+  color: #2f343f;
+  /* grey */
+  color: #666a73;
+  /* blue */
+  color: #3daee9;
+  color: #5294e2;
+  color: #2980b9;
+  /* red */
+  color: #da4453;
+  /* orange */
+  color: #f67400;
+  /* green */
+  color: #11d116;
+  color: #27ae60;
+  /* yellow */
+  color: #c9ce3b;
+  color: #fdbc4b;
+}
+p{
+  /* white text */
+  color: #d3dae3;
+  /* grey text */
+  color: #666a73;
+}
+
+/* light theme */

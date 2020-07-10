@@ -1,0 +1,9 @@
+.MoviesShower{
+  background-color: #383c4a;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  width: 95%;
+  margin: auto;
+  border-radius: 2rem;
+  padding: 1.5rem;
+}
