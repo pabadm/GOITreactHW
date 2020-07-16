@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import styles from './SearchBar.module.css';
+import styles from './SearchBar.module.scss';
 
 export default class SearchBar extends Component {
   handleHover = ({ target }) => {
@@ -21,23 +21,26 @@ export default class SearchBar extends Component {
         <form onSubmit={onSubmit} className={styles['SearchBar-form']}>
           <input
             type="text"
-            name="search"
             placeholder="Find some movies!"
             value={value}
             onChange={onChange}
-            className={`${styles['form-input']} ${
+            className={`${styles['SearchBar-form-input']} 
+            ${styles['SearchBar-form-search']}
+            ${
               value === ''
-                ? styles['form-search--ONLY']
-                : styles['form-search--notONLY']
+                ? styles['SearchBar-form-search--ONLY']
+                : styles['SearchBar-form-search--notONLY']
             }`}
           />
           <input
             type="submit"
             value="Search"
-            className={`${styles['form-input']} ${
+            className={`${styles['SearchBar-form-input']} 
+            ${styles['SearchBar-form-submit']}
+            ${
               value === ''
-                ? styles['form-submit--HIDDEN']
-                : styles['form-submit--SHOWN']
+                ? styles['SearchBar-form-submit--HIDDEN']
+                : styles['SearchBar-form-submit--SHOWN']
             }`}
             onMouseEnter={this.handleHover}
             onMouseLeave={this.handleUnHover}

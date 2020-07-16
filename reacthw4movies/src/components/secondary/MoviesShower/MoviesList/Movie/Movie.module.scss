@@ -1,0 +1,194 @@
+.text {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  text-align: center;
+}
+
+.Movie {
+  position: relative;
+  width: 90%;
+  margin-bottom: 1.5rem;
+  @media (min-width: 550px) {
+    width: 40%;
+  }
+  @media (min-width: 768px) {
+    width: 30%;
+  }
+  @media (min-width: 1024px) {
+    width: 23%;
+  }
+
+  @media (min-width: 1440px) {
+    width: 18%;
+  }
+
+  @media (min-width: 2560px) {
+    width: 15%;
+  }
+}
+
+.Movie-btn {
+  position: relative;
+  cursor: pointer;
+
+  display: block;
+  border: 0;
+  outline: 0;
+  padding: 0.5rem;
+
+  background-color: #2f343f;
+  border-radius: 2rem;
+}
+
+.Movie-poster {
+  position: relative;
+
+  display: block;
+  width: 100%;
+
+  margin: auto;
+}
+.Movie-poster-img {
+  border-radius: 2rem;
+  display: block;
+  width: 100%;
+}
+.Movie-poster-like {
+  width: 2.5rem;
+  height: 2.5rem;
+
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+  z-index: 1;
+}
+
+.Movie-poster-vote {
+  border-top-right-radius: 2rem;
+  border-bottom-left-radius: 2rem;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  padding: 0.75rem;
+
+  z-index: 1;
+
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: center;
+  color: #2f343f;
+}
+.vote-bad {
+  background-color: #da4453e1;
+}
+.vote-average {
+  background-color: #fdcd4be1;
+}
+.vote-nice {
+  background-color: #2ee47ae1;
+}
+
+.Movie-title {
+  display: block;
+  z-index: 1;
+
+  box-sizing: border-box;
+
+  margin: 0;
+  padding-top: 0.5rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+
+  font-weight: 600;
+  font-size: 1.1rem;
+  position: relative;
+
+  color: #c7cdd4;
+  transition: color 0.5s linear;
+}
+
+.Movie:hover .Movie-title {
+  color: #000;
+  transition: color 0.5s linear;
+}
+
+.Movie-title::before {
+  content: '';
+  margin: auto;
+
+  height: 0.25rem;
+
+  border-radius: 2rem;
+
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  top: -0.25rem;
+  transform: translateX(-50%);
+
+  width: 0;
+  transition: width 0.3s linear;
+}
+
+.title-nice::before {
+  background-color: #2ee47ae1;
+}
+.title-average::before {
+  background-color: #fdcd4be1;
+}
+.title-bad::before {
+  background-color: #da4453e1;
+}
+
+.Movie:hover .Movie-title::before {
+  width: 100%;
+  transition: width 0.3s linear;
+}
+
+.blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  border-radius: 2rem;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: #33a0e9d8;
+
+  opacity: 0;
+  transition: opacity 0.5s linear;
+}
+.Movie:hover .blur {
+  opacity: 1;
+  transition: opacity 0.5s linear;
+}
+
+.blur-overview {
+  margin: 0;
+
+  position: absolute;
+  top: 3.5rem;
+  left: 0;
+  // bottom: 0;
+  /* bottom изменяется скриптом в инлайновом ксс */
+  width: 100%;
+
+  box-sizing: border-box;
+  padding-right: 1rem;
+  padding-left: 1rem;
+
+  overflow: auto;
+
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #24282f;
+
+  scrollbar-width: none;
+}
+.blur-overview::-webkit-scrollbar {
+  width: 0;
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { NavLink } from 'react-router-dom';
-import SearchBar from '../secondary/SearchBar/SearchBar';
+import SearchBar from './SearchBar/SearchBar';
 
 import styles from './Navigation.module.css';
 
@@ -32,9 +32,8 @@ export default class Navigation extends Component {
       <header className={styles.Navigation}>
         <nav>
           <div>
-            <NavLink to="/https://stackoverflow.com/questions/39600138/how-to-simultaneously-transiticon-colour-of-nested-childrenHome?p=1">
-              Go Home
-            </NavLink>
+            <NavLink to="/Home">Go Home</NavLink>
+            <NavLink to="/Favorites">Show Favorites</NavLink>
           </div>
           {/* <NavLink to="/Favorites">Favorites</NavLink> */}
           <SearchBar

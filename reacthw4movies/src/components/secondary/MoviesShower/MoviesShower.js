@@ -20,15 +20,19 @@ const MoviesShower = ({
     <section className={styles.MoviesShower}>
       {isLoading && <Loader />}
       {error && <Message msg={error.message} />}
-      {totalPages < page && !error && <Message msg="no films found" />}
+      {totalPages !== null && totalPages < page && !error && (
+        <Message msg="no films found" />
+      )}
       {!isLoading && !error && (
         <>
           <MoviesList movies={movies} handleShowDetails={handleShowDetails} />
-          <PageChanger
-            onClick={handlePageChange}
-            page={page}
-            totalPages={totalPages}
-          />
+          {totalPages !== null && (
+            <PageChanger
+              onClick={handlePageChange}
+              page={page}
+              totalPages={totalPages}
+            />
+          )}
         </>
       )}
     </section>

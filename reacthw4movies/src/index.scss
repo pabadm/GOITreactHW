@@ -1,0 +1,19 @@
+@import '~sanitize.css';
+@import '~sanitize.css/forms.css';
+@import '~sanitize.css/typography.css';
+
+@import '../public/Fonts/Fonts.css';
+
+@import './Images/icons/icons.scss';
+
+body {
+  background-color: #404552;
+  width: 100%;
+}
+#root {
+  background-color: #404552;
+  width: 100%;
+}
+header {
+  width: 100%;
+}

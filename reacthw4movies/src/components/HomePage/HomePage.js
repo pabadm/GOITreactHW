@@ -78,7 +78,6 @@ export default class HomePage extends Component {
 
   render() {
     const { movies, error, isLoading, page, totalPages } = this.state;
-    const { history } = this.props;
 
     return (
       <MoviesShower

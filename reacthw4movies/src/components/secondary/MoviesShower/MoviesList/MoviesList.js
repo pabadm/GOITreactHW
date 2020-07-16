@@ -2,60 +2,11 @@ import React, { Component } from 'react';
 
 import shortid from 'shortid';
 
-import getPosterLink from '../../../../api/getPosterLink';
+import styles from './MoviesList.module.scss';
+// для проверки высоты названия
+import checkTitleStyles from './Movie/Movie.module.scss';
 
-import styles from './MoviesList.module.css';
-
-const Movie = ({
-  posterPath,
-  title,
-  overview,
-  vote,
-  id,
-  handleShowDetails,
-  overviewBottomIndent,
-}) => {
-  return (
-    <li className={styles.Movie}>
-      <button
-        type="button"
-        onClick={() => handleShowDetails(id)}
-        className={`${styles.text} ${styles['Movie-btn']}`}
-      >
-        <div className={styles['Movie-poster']}>
-          <img
-            className={styles['Movie-poster-img']}
-            src={getPosterLink(posterPath, 500)}
-            alt="img"
-          />
-          {vote !== 0 && (
-            <span
-              className={`${styles.text} ${styles['Movie-poster-vote']} ${
-                vote < 4 && styles['vote-bad']
-              } ${vote >= 4 && vote <= 6 && styles['vote-average']} ${
-                vote > 6 && styles['vote-nice']
-              }`}
-            >
-              {Number.isInteger(vote) ? `${vote}` : vote}
-            </span>
-          )}
-        </div>
-        <h4 className={`${styles.text} ${styles['Movie-title']}`}>{title}</h4>
-
-        <div className={styles.blur}>
-          <h6
-            style={overviewBottomIndent}
-            className={`${styles.text} ${styles['blur-overview']}`}
-          >
-            {overview}
-          </h6>
-          <div className={styles['blur-uncopinator']} />
-        </div>
-      </button>
-    </li>
-  );
-};
-// }
+import Movie from './Movie/Movie';
 
 class MoviesList extends Component {
   constructor(props) {
@@ -66,7 +17,9 @@ class MoviesList extends Component {
   }
 
   componentDidMount() {
-    const titles = [...document.getElementsByClassName(styles['Movie-title'])];
+    const titles = [
+      ...document.getElementsByClassName(checkTitleStyles['Movie-title']),
+    ];
 
     const overviewBottomIndents = [];
 
@@ -99,5 +52,4 @@ class MoviesList extends Component {
     );
   }
 }
-
 export default MoviesList;

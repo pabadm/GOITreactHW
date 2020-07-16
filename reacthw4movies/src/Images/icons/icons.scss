@@ -1,0 +1,38 @@
+svg {
+  width: 100%;
+  height: 100%;
+}
+// .heart_svg {
+//   &__FILLED {
+//     fill: lightcoral;
+//     transform: likeSomthing 20s linear;
+//   }
+
+//   &__UNFILLED {
+//     fill: #eb1e1e;
+//   }
+// }
+
+// .heartSolid_svg {
+//   &__icon {
+//     fill: lightcoral;
+//     transition: fill 2s linear;
+//     &:hover {
+//       fill: yellow;
+//       transition: fill 2s linear;
+//     }
+//   }
+//   &__icon2{
+//     fill: red;
+//   }
+// }
+.heartLinear_svg {
+  &__icon {
+    fill: #da4453;
+  }
+}
+.heartSolid_svg {
+  &__icon {
+    fill: #da4453;
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './LoadMore.module.css';
+import styles from './PageChanger.module.css';
 
 const PageChangerBtn = ({ text, name, onClick }) => {
   return (

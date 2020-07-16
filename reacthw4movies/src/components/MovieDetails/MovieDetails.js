@@ -23,7 +23,6 @@ export default class MovieDetails extends Component {
   }
 
   componentDidUpdate() {
-    this.renderHash();
     const { id } = this.state;
     const { history } = this.props;
     const newId = queryString.parse(location.search).id;
@@ -46,22 +45,22 @@ export default class MovieDetails extends Component {
           title: data.title,
           overview: data.overview,
           posterPath: data.poster_path,
+          vote: data.vote_average,
         }),
       )
       .catch(error => this.setState({ error }))
       .finally(() => this.setState({ isLoading: false }));
   };
 
-  renderHash = () => {};
-
   render() {
-    const { title, overview, posterPath, id } = this.state;
+    const { title, overview, posterPath, vote, id } = this.state;
     return (
       <DetailsShower
         title={title}
         overview={overview}
         posterPath={posterPath}
         id={id}
+        vote={vote}
       />
     );
   }
