@@ -20,6 +20,8 @@ export default class AddToFavorites extends Component {
 
     if (FavoriteMovies === null) {
       localStorage.setItem('FavoriteMovies', '[]');
+      this.setState({ isFavorite: false });
+      return;
     }
 
     this.setState({ isFavorite: FavoriteMovies.includes(id) });
