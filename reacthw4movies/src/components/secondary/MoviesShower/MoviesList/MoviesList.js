@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import shortid from 'shortid';
 
-import styles from './MoviesList.module.scss';
+import styles from './MoviesList.module.sass';
 // для проверки высоты названия
 import checkTitleStyles from './Movie/Movie.module.scss';
 
@@ -17,6 +17,14 @@ class MoviesList extends Component {
   }
 
   componentDidMount() {
+    this.countBottomIndents();
+  }
+
+  componentDidUpdate() {
+    this.countBottomIndents();
+  }
+
+  countBottomIndents = () => {
     const titles = [
       ...document.getElementsByClassName(checkTitleStyles['Movie-title']),
     ];
@@ -28,12 +36,19 @@ class MoviesList extends Component {
         bottom: `${(title.clientHeight + 8 + 16) / 16}rem`,
       }),
     );
-    this.setState({ overviewBottomIndents });
-  }
+
+    if (
+      this.state.overviewBottomIndents.join('') !==
+      overviewBottomIndents.join('')
+    ) {
+      this.setState({ overviewBottomIndents });
+    }
+  };
 
   render() {
     const { movies, handleShowDetails } = this.props;
     const { overviewBottomIndents } = this.state;
+
     return (
       <ul className={styles.MoviesList}>
         {movies.map(movie => (

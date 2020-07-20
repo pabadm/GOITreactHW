@@ -1,3 +1,18 @@
+%color-nice {
+  background-color: #2ee47ae1;
+}
+%color-average {
+  background-color: #fdcd4be1;
+}
+%color-bad {
+  background-color: #da4453e1;
+}
+$transparentBlue: #33a0e9d8;
+
+$padding: 0.5rem;
+
+$border-radius: 2rem;
+
 .text {
   font-family: 'Roboto', sans-serif;
   font-style: normal;
@@ -31,120 +46,108 @@
   position: relative;
   cursor: pointer;
 
+  width: 100%;
+  height: 100%;
+
   display: block;
   border: 0;
   outline: 0;
-  padding: 0.5rem;
+  padding: $padding;
 
   background-color: #2f343f;
-  border-radius: 2rem;
+  border-radius: $border-radius;
 }
 
-.Movie-poster {
-  position: relative;
+.Movie {
+  &-poster {
+    position: relative;
 
-  display: block;
-  width: 100%;
+    display: block;
+    width: 100%;
 
-  margin: auto;
-}
-.Movie-poster-img {
-  border-radius: 2rem;
-  display: block;
-  width: 100%;
-}
-.Movie-poster-like {
-  width: 2.5rem;
-  height: 2.5rem;
+    margin: auto;
 
-  position: absolute;
-  top: 1rem;
-  left: 1.5rem;
-  z-index: 1;
-}
+    &-img {
+      border-radius: $border-radius;
+      display: block;
+      width: 100%;
+    }
 
-.Movie-poster-vote {
-  border-top-right-radius: 2rem;
-  border-bottom-left-radius: 2rem;
+    &-like {
+      width: 2.5rem;
+      height: 2.5rem;
 
-  position: absolute;
-  top: 0;
-  right: 0;
+      position: absolute;
+      top: $padding * 2;
+      left: $padding * 3;
+      z-index: 1;
+    }
 
-  padding: 0.75rem;
+    &-vote {
+      border-top-right-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
 
-  z-index: 1;
+      position: absolute;
+      top: 0;
+      right: 0;
 
-  font-weight: 500;
-  font-size: 1rem;
-  text-align: center;
-  color: #2f343f;
-}
-.vote-bad {
-  background-color: #da4453e1;
-}
-.vote-average {
-  background-color: #fdcd4be1;
-}
-.vote-nice {
-  background-color: #2ee47ae1;
-}
+      padding: 0.75rem;
 
-.Movie-title {
-  display: block;
-  z-index: 1;
+      z-index: 1;
 
-  box-sizing: border-box;
+      font-weight: 500;
+      font-size: 1rem;
+      text-align: center;
+      color: #2f343f;
+    }
+    @each $type in 'nice' 'average' 'bad' {
+      .vote-#{$type} {
+        @extend %color-#{$type};
+      }
+    }
+  }
 
-  margin: 0;
-  padding-top: 0.5rem;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
+  &-title {
+    display: block;
+    z-index: 1;
 
-  font-weight: 600;
-  font-size: 1.1rem;
-  position: relative;
+    box-sizing: border-box;
 
-  color: #c7cdd4;
-  transition: color 0.5s linear;
-}
+    margin: 0;
+    padding-top: $padding;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
 
-.Movie:hover .Movie-title {
-  color: #000;
-  transition: color 0.5s linear;
-}
+    font-weight: 600;
+    font-size: 1.1rem;
+    position: relative;
 
-.Movie-title::before {
-  content: '';
-  margin: auto;
+    color: #c7cdd4;
+    transition: color 0.5s linear;
 
-  height: 0.25rem;
+    &::before {
+      content: '';
+      margin: auto;
 
-  border-radius: 2rem;
+      height: 0.25rem;
 
-  position: absolute;
-  left: 50%;
-  right: 50%;
-  top: -0.25rem;
-  transform: translateX(-50%);
+      border-radius: $border-radius;
 
-  width: 0;
-  transition: width 0.3s linear;
-}
+      position: absolute;
+      left: 50%;
+      right: 50%;
+      top: -0.25rem;
+      transform: translateX(-50%);
 
-.title-nice::before {
-  background-color: #2ee47ae1;
-}
-.title-average::before {
-  background-color: #fdcd4be1;
-}
-.title-bad::before {
-  background-color: #da4453e1;
-}
-
-.Movie:hover .Movie-title::before {
-  width: 100%;
-  transition: width 0.3s linear;
+      width: 0;
+      transition: width 0.3s linear;
+    }
+  }
+  @each $type in 'nice' 'average' 'bad' {
+    .title-#{$type}::before {
+      @extend %color-#{$type};
+    }
+  }
 }
 
 .blur {
@@ -152,43 +155,55 @@
   top: 0;
   left: 0;
 
-  border-radius: 2rem;
+  border-radius: $border-radius;
 
   width: 100%;
   height: 100%;
 
-  background-color: #33a0e9d8;
+  background-color: $transparentBlue;
 
   opacity: 0;
   transition: opacity 0.5s linear;
+  &-overview {
+    margin: 0;
+
+    position: absolute;
+    top: 4rem;
+    left: 0;
+    bottom: 3.625rem;
+    // bottom изменяется скриптом в инлайновом ксс
+    width: 100%;
+
+    box-sizing: border-box;
+    padding-right: $padding * 2;
+    padding-left: $padding * 2;
+
+    overflow: auto;
+
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #24282f;
+
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
 }
-.Movie:hover .blur {
-  opacity: 1;
-  transition: opacity 0.5s linear;
-}
 
-.blur-overview {
-  margin: 0;
+.Movie:hover {
+  .Movie-title {
+    color: #000;
+    transition: color 0.5s linear;
 
-  position: absolute;
-  top: 3.5rem;
-  left: 0;
-  // bottom: 0;
-  /* bottom изменяется скриптом в инлайновом ксс */
-  width: 100%;
+    &::before {
+      width: 100%;
+      transition: width 0.3s linear;
+    }
+  }
 
-  box-sizing: border-box;
-  padding-right: 1rem;
-  padding-left: 1rem;
-
-  overflow: auto;
-
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #24282f;
-
-  scrollbar-width: none;
-}
-.blur-overview::-webkit-scrollbar {
-  width: 0;
+  .blur {
+    opacity: 1;
+    transition: opacity 0.5s linear;
+  }
 }

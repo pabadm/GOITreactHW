@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 
 import getPosterLink from '../../../../../api/getPosterLink';
 
-// import HeartIcon from '../../../../../Images/icons/heart.svg';
-// import HeartLinear from '../../../../../Images/icons/heartLinear.svg';
-// import HeartSolid from '../../../../../Images/icons/heartSolid.svg';
 import AddToFavorites from '../../../AddToFavorites/AddToFavorites';
 
 import styles from './Movie.module.scss';
@@ -31,7 +28,7 @@ class Movie extends Component {
           type="button"
           onClick={this.handleClick}
           title="Watch details"
-          className={`${styles.text} ${styles['Movie-btn']}`}
+          className={styles['Movie-btn']}
         >
           <div className={styles['Movie-poster']}>
             <img
@@ -48,7 +45,7 @@ class Movie extends Component {
                   vote > 6 && styles['vote-nice']
                 }`}
               >
-                {Number.isInteger(vote) ? `${vote}` : vote}
+                {Number.isInteger(vote) ? `${vote}.0` : vote}
               </span>
             )}
           </div>
