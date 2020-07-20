@@ -72,6 +72,8 @@
     top: 0;
     right: 0;
 
+    padding: 0;
+
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
 
@@ -79,17 +81,16 @@
 
     background-color: transparent;
 
+
     &--SHOWN {
       opacity: 1;
       width: 30%;
-      padding-right: 1rem;
 
       transition: all 1s linear;
     }
 
     &--HIDDEN {
       opacity: 0;
-      padding: 0;
       width: 0;
 
       transition: all 1s linear;
