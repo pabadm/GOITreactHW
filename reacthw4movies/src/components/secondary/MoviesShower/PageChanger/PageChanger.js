@@ -1,30 +1,73 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-import styles from './PageChanger.module.css';
+import { NavLink, useLocation } from 'react-router-dom';
+import queryString from 'query-string';
 
-const PageChangerBtn = ({ text, name, onClick }) => {
+import styles from './PageChanger.module.scss';
+
+class PageChangerLink extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      page: 1,
+    };
+  }
+
+  changePage = () => {
+    const { type, location } = this.props;
+
+    const { search } = location;
+
+    const parsedSearch = queryString.parse(search);
+
+    let page = Number(parsedSearch.p);
+
+    if (type === 'increment') {
+      console.log('incr :>> ');
+      page += 1;
+    } else if (type === 'decrement') {
+      page -= 1;
+    }
+    parsedSearch.p = page;
+
+    return queryString.stringify(parsedSearch);
+  };
+
+  render() {
+    const stringifiedSearch = this.changePage();
+    const { text } = this.props;
+    const { pathname, hash } = location;
+
+    return (
+      <NavLink
+        className={styles['PageChanger-link']}
+        to={`${pathname}?${stringifiedSearch}${hash}`}
+      >
+        {text}
+      </NavLink>
+    );
+  }
+}
+
+const PageChanger = ({ page, totalPages }) => {
+  const location = useLocation();
   return (
-    <button
-      name={name}
-      type="button"
-      onClick={onClick}
-      className={styles.PageChangerBtn}
-    >
-      {text}
-    </button>
-  );
-};
-
-const PageChanger = ({ onClick, page, totalPages }) => {
-  return (
-    <footer className={styles.PageChanger}>
-      {page < totalPages && (
-        <PageChangerBtn onClick={onClick} name="increment" text="Next Page" />
-      )}
+    <div className={styles.PageChanger}>
       {page !== 1 && (
-        <PageChangerBtn onClick={onClick} name="decrement" text="Prev Page" />
+        <PageChangerLink
+          location={location}
+          type="decrement"
+          text="Prev Page"
+        />
       )}
-    </footer>
+      {page < totalPages && (
+        <PageChangerLink
+          location={location}
+          type="increment"
+          text="Next Page"
+        />
+      )}
+    </div>
   );
 };
 

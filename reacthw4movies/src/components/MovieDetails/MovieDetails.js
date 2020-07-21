@@ -3,7 +3,7 @@ import queryString from 'query-string';
 
 import getApiData from '../../api/getApiData';
 
-import DetailsShower from '../secondary/DetailsShower/DetailsShower';
+import DetailsShower from './DetailsShower/DetailsShower';
 
 export default class MovieDetails extends Component {
   constructor(props) {
@@ -14,7 +14,11 @@ export default class MovieDetails extends Component {
       posterPath: '',
       id: '',
       isLoading: false,
+      castLoading: false,
       error: false,
+      castERR: false,
+      cast: [],
+      reviews: [],
     };
   }
 
@@ -22,22 +26,18 @@ export default class MovieDetails extends Component {
     this.updateComponent();
   }
 
-  componentDidUpdate() {
-    const { id } = this.state;
-    const { history } = this.props;
-    const newId = queryString.parse(location.search).id;
-
-    if (newId === undefined || newId === '') {
-      history.push('/Home');
-    } else if (id !== newId) {
-      this.updateComponent();
-    }
-  }
-
   updateComponent = () => {
     const { id } = queryString.parse(location.search);
     console.log('q :>> ', queryString.parse(location.hash));
-    this.setState({ isLoading: true, error: false, id });
+    this.setState({
+      isLoading: true,
+      castLoading: true,
+      reviewsLoading: true,
+      reviewsERR: false,
+      castERR: false,
+      error: false,
+      id,
+    });
     getApiData
       .details(id)
       .then(data =>
@@ -50,10 +50,29 @@ export default class MovieDetails extends Component {
       )
       .catch(error => this.setState({ error }))
       .finally(() => this.setState({ isLoading: false }));
+
+    this.getCast(id);
+    this.getReviews(id);
+  };
+
+  getCast = id => {
+    getApiData
+      .cast(id)
+      .then(data => this.setState({ cast: data.cast }))
+      .catch(castERR => this.setState({ castERR }))
+      .finally(() => this.setState({ castLoading: false }));
+  };
+
+  getReviews = id => {
+    getApiData
+      .reviews(id)
+      .then(data => this.setState({ reviews: data.results }))
+      .catch(reviewsERR => this.setState({ reviewsERR }))
+      .finally(() => this.setState({ reviewsLoading: false }));
   };
 
   render() {
-    const { title, overview, posterPath, vote, id } = this.state;
+    const { title, overview, posterPath, vote, cast, reviews, id } = this.state;
     return (
       <DetailsShower
         title={title}
@@ -61,6 +80,8 @@ export default class MovieDetails extends Component {
         posterPath={posterPath}
         id={id}
         vote={vote}
+        cast={cast}
+        reviews={reviews}
       />
     );
   }

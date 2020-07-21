@@ -92,7 +92,22 @@ module.exports = {
       {
         test: /\.svg$/,
         use: ['@svgr/webpack'],
+        exclude: [/Fonts/, /fonts/, /urls/],
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'icons/',
+              limit: 8192,
+            },
+          },
+        ],
         exclude: [/Fonts/, /fonts/],
+        include: [/urls/],
       },
       {
         test: /\.(gif|png|jpeg|jpg)$/,

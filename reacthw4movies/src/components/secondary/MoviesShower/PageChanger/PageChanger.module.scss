@@ -1,0 +1,35 @@
+%color-nice {
+  background-color: #2ee47ae1;
+}
+%color-average {
+  background-color: #fdcd4be1;
+}
+%color-bad {
+  background-color: #da4453e1;
+}
+
+.PageChanger {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  margin-bottom: 1.5rem;
+}
+.PageChanger {
+  &-link,
+  &-link:visited,
+  &-link:link {
+    padding: 0.75rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    @extend %color-average;
+    color: #2f343f;
+    text-decoration: none;
+    outline: none;
+    border-radius: 2rem;
+    transition: background-color 0.3s linear;
+  }
+  &-link:hover {
+    @extend %color-bad;
+    transition: background-color 0.3s linear;
+  }
+}

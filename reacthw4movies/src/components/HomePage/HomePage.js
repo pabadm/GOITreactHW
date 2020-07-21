@@ -62,15 +62,6 @@ export default class HomePage extends Component {
       .finally(() => this.setState({ isLoading: false }));
   };
 
-  handlePageChange = ({ target }) => {
-    const { page } = this.state;
-    const { history } = this.props;
-
-    history.push(
-      `/Home?p=${target.name === 'increment' ? page + 1 : page - 1}`,
-    );
-  };
-
   handleShowDetails = id => {
     const { history } = this.props;
     history.push(`/Details?id=${id}`);

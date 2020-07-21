@@ -62,17 +62,6 @@ export default class MoviesSearcher extends Component {
       .finally(() => this.setState({ isLoading: false }));
   };
 
-  handlePageChange = ({ target }) => {
-    const { page, query } = this.state;
-    const { history } = this.props;
-
-    history.push(
-      `/Search?q=${query}&p=${
-        target.name === 'increment' ? page + 1 : page - 1
-      }`,
-    );
-  };
-
   handleShowDetails = id => {
     const { history } = this.props;
     history.push(`/Details?id=${id}`);

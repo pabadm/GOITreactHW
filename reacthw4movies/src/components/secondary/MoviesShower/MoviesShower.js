@@ -13,29 +13,26 @@ const MoviesShower = ({
   isLoading,
   page,
   totalPages,
-  handlePageChange,
   handleShowDetails,
 }) => {
   return (
-    <section className={styles.MoviesShower}>
-      {isLoading && <Loader />}
-      {error && <Message msg={error.message} />}
-      {totalPages !== null && totalPages < page && !error && (
-        <Message msg="no films found" />
+    <>
+      <section className={styles.MoviesShower}>
+        {isLoading && <Loader />}
+        {error && <Message msg={error.message} />}
+        {totalPages !== null && totalPages < page && !error && (
+          <Message msg="no films found" />
+        )}
+        {!isLoading && !error && (
+          <>
+            <MoviesList movies={movies} handleShowDetails={handleShowDetails} />
+          </>
+        )}
+      </section>
+      {totalPages !== null && (
+        <PageChanger page={page} totalPages={totalPages} />
       )}
-      {!isLoading && !error && (
-        <>
-          <MoviesList movies={movies} handleShowDetails={handleShowDetails} />
-          {totalPages !== null && (
-            <PageChanger
-              onClick={handlePageChange}
-              page={page}
-              totalPages={totalPages}
-            />
-          )}
-        </>
-      )}
-    </section>
+    </>
   );
 };
 

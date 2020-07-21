@@ -1,26 +1,26 @@
 /* dark theme */
 body{
   /* black */
-  background-color: #404552;
-  background-color: #383c4a;
-  background-color: #353945;
-  background-color: #2f343f;
+  color: #404552;
+  color: #383c4a;
+  color: #353945;
+  color: #2f343f;
   /* grey */
-  background-color: #666a73;
+  color: #666a73;
   /* blue */
-  background-color: #3daee9;
-  background-color: #5294e2;
-  background-color: #2980b9;
+  color: #3daee9;
+  color: #5294e2;
+  color: #2980b9;
   /* red */
-  background-color: #da4453;
+  color: #da4453;
   /* orange */
-  background-color: #f67400;
+  color: #f67400;
   /* green */
-  background-color: #11d116;
-  background-color: #27ae60;
+  color: #11d116;
+  color: #27ae60;
   /* yellow */
-  background-color: #c9ce3b;
-  background-color: #fdbc4b;
+  color: #c9ce3b;
+  color: #fdbc4b;
 }
 p{
   /* white text */
