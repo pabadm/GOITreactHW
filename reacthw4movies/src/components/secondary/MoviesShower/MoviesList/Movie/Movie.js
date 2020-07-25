@@ -18,7 +18,7 @@ const Movie = ({
   return (
     <li className={styles.Movie}>
       <AddToFavorites id={id} className={styles['Movie-poster-like']} />
-      <Link to={`Details?id=${id}`}>
+      <Link to={`Details?id=${id}`} className={styles['Movie-link']}>
         <div className={styles['Movie-poster']}>
           <img
             className={styles['Movie-poster-img']}
