@@ -23,7 +23,6 @@ class PageChangerLink extends Component {
     let page = Number(parsedSearch.p);
 
     if (type === 'increment') {
-      console.log('incr :>> ');
       page += 1;
     } else if (type === 'decrement') {
       page -= 1;

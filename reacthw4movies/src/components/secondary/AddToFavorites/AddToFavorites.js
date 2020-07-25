@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import PropTypes from 'prop-types';
+
 import HeartSolid from '../../../Images/icons/heartSolid.svg';
 import HeartLinear from '../../../Images/icons/heartLinear.svg';
 
@@ -15,6 +17,14 @@ export default class AddToFavorites extends Component {
   }
 
   componentDidMount() {
+    this.updateComponent();
+  }
+
+  componentDidUpdate() {
+    this.updateComponent();
+  }
+
+  updateComponent = () => {
     const FavoriteMovies = JSON.parse(localStorage.getItem('FavoriteMovies'));
     const { id } = this.props;
 
@@ -23,9 +33,10 @@ export default class AddToFavorites extends Component {
       this.setState({ isFavorite: false });
       return;
     }
-
-    this.setState({ isFavorite: FavoriteMovies.includes(id) });
-  }
+    if (this.state.isFavorite !== FavoriteMovies.includes(id)) {
+      this.setState({ isFavorite: FavoriteMovies.includes(id) });
+    }
+  };
 
   handleClick = () => {
     const { isFavorite } = this.state;
@@ -61,3 +72,8 @@ export default class AddToFavorites extends Component {
     );
   }
 }
+
+AddToFavorites.propTypes = {
+  id: PropTypes.number.isRequired,
+  className: PropTypes.string.isRequired,
+};

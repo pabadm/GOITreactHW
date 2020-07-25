@@ -19,9 +19,9 @@ const MoviesShower = ({
     <>
       <section className={styles.MoviesShower}>
         {isLoading && <Loader />}
-        {error && <Message msg={error.message} />}
-        {totalPages !== null && totalPages < page && !error && (
-          <Message msg="no films found" />
+        {error && <Message msg={`Something went wrong: ${error.message}`} />}
+        {!isLoading && totalPages !== null && totalPages < page && !error && (
+          <Message msg="No films found" />
         )}
         {!isLoading && !error && (
           <>

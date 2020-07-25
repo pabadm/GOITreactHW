@@ -17,10 +17,12 @@ const DetailsShower = ({
   reviews,
 }) => {
   const location = useLocation();
-
   return (
     <section className={styles.DetailsShower}>
-      <AddToFavorites id={id} className={styles['DetailsShower-like']} />
+      <AddToFavorites
+        id={Number(id)}
+        className={styles['DetailsShower-like']}
+      />
       <div className={styles['DetailsShower-poster']}>
         <img
           className={styles['DetailsShower-poster-img']}

@@ -28,7 +28,6 @@ export default class MovieDetails extends Component {
 
   updateComponent = () => {
     const { id } = queryString.parse(location.search);
-    console.log('q :>> ', queryString.parse(location.hash));
     this.setState({
       isLoading: true,
       castLoading: true,
