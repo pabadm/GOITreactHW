@@ -52,7 +52,7 @@ const PageChanger = ({ page, totalPages }) => {
   const location = useLocation();
   return (
     <div className={styles.PageChanger}>
-      {page !== 1 && (
+      {page > 1 && (
         <PageChangerLink
           location={location}
           type="decrement"

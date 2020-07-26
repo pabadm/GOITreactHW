@@ -21,11 +21,15 @@ const Movie = ({
       <Link to={`Details?id=${id}`} className={styles['Movie-link']}>
         <div className={styles['Movie-poster']}>
           <img
-            className={styles['Movie-poster-img']}
+            className={styles['Movie-poster-img--HIGH']}
             src={getPosterLink(posterPath, 500)}
             alt="img"
           />
-
+          <img
+            className={styles['Movie-poster-img--LOW']}
+            src={getPosterLink(posterPath, 92)}
+            alt="img"
+          />
           {vote !== 0 && (
             <span
               className={`${styles.text} ${styles['Movie-poster-vote']} ${

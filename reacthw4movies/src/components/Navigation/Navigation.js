@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import SearchBar from './SearchBar/SearchBar';
 
 import styles from './Navigation.module.scss';

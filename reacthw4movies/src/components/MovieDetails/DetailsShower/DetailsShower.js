@@ -25,7 +25,12 @@ const DetailsShower = ({
       />
       <div className={styles['DetailsShower-poster']}>
         <img
-          className={styles['DetailsShower-poster-img']}
+          className={styles['DetailsShower-poster-img--LOW']}
+          src={getPosterLink(posterPath, 92)}
+          alt="img"
+        />
+        <img
+          className={styles['DetailsShower-poster-img--HIGH']}
           src={getPosterLink(posterPath, 1280)}
           alt="img"
         />
