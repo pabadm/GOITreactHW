@@ -1,12 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-/lessons
 
 
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
-/lessons
 /webpack-react-education-kit
 # testing
 /coverage
@@ -14,6 +12,8 @@
 # production
 /build
 /test
+/reduxTEST
+/lessons
 
 # misc
 .DS_Store

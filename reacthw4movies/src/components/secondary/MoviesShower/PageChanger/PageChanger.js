@@ -1,55 +1,53 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 
-import { NavLink, useLocation } from 'react-router-dom';
-import queryString from 'query-string';
+import { NavLink, useLocation, useHistory } from 'react-router-dom';
+import queryString, { parse } from 'query-string';
 
 import styles from './PageChanger.module.scss';
 
-class PageChangerLink extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      page: 1,
-    };
+const PageChangerLink = ({ type, text }) => {
+  const location = useLocation();
+
+  let { search } = location;
+
+  const parsedSearch = queryString.parse(search);
+
+  let page = Number(parsedSearch.p);
+
+  if (Number.isNaN(page)) {
+    page = 1;
   }
 
-  changePage = () => {
-    const { type, location } = this.props;
-
-    const { search } = location;
-
-    const parsedSearch = queryString.parse(search);
-
-    let page = Number(parsedSearch.p);
-
-    if (type === 'increment') {
+  switch (type) {
+    case 'increment':
       page += 1;
-    } else if (type === 'decrement') {
+      break;
+    case 'decrement':
       page -= 1;
-    }
-    parsedSearch.p = page;
-
-    return queryString.stringify(parsedSearch);
-  };
-
-  render() {
-    const stringifiedSearch = this.changePage();
-    const { text } = this.props;
-    const { pathname, hash } = location;
-
-    return (
-      <NavLink
-        className={styles['PageChanger-link']}
-        to={`${pathname}?${stringifiedSearch}${hash}`}
-      >
-        {text}
-      </NavLink>
-    );
+      break;
+    default:
+      page = 1;
   }
-}
+
+  parsedSearch.p = page;
+
+  search = `?${queryString.stringify(parsedSearch)}`;
+
+  const { pathname, hash } = location;
+
+  return (
+    <NavLink
+      className={styles['PageChanger-link']}
+      to={`${pathname}${search}${hash}`}
+    >
+      {text}
+    </NavLink>
+  );
+};
 
 const PageChanger = ({ page, totalPages }) => {
   const location = useLocation();
+
   return (
     <div className={styles.PageChanger}>
       {page > 1 && (
