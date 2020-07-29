@@ -1,0 +1,43 @@
+.ContactForm {
+  width: 90%;
+  margin: auto;
+  background-color: #fff;
+  padding: 0.5rem;
+  padding-bottom: 0;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0px 0px 0.8rem 0.2rem rgb(125, 125, 125);
+  &-form {
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: stretch;
+    &-input {
+      box-sizing: border-box;
+      border: 0.1rem solid #b5b5b5;
+      background-color: #fff;
+      border-radius: 0.25rem;
+      margin-bottom: 0.5rem;
+      font-family: sans-serif;
+
+      transition: border-color  0.1s linear;
+      &:focus {
+        border-color: #2a3693;
+        transition: border-color  0.1s linear;
+      }
+      &[type='submit'] {
+        background-color: #2a3693;
+        border: none;
+        transition: background-color 0.1s linear;
+        text-align: center;
+        color: rgb(220, 220, 220);
+        &:hover,
+        &:active {
+          background-color: #343e97;
+          transition: background-color 0.1s linear;
+        }
+      }
+    }
+  }
+}
