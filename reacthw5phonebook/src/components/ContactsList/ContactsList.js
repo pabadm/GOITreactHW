@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import Contact from './Contact/Contact';
 
+import styles from './ContactsList.module.scss';
+
 const ContactsList = ({ contacts, filter }) => {
   const lowFilter = filter.toLowerCase();
 
@@ -14,8 +16,8 @@ const ContactsList = ({ contacts, filter }) => {
   );
 
   return (
-    <section className="ContactsList">
-      <ul className="ContactsList-list">
+    <section className={styles.ContactsList}>
+      <ul className={styles['ContactsList-list']}>
         {filteredContacts.map(({ id, name, number }) => (
           <Contact key={id} id={id} name={name} number={number} />
         ))}

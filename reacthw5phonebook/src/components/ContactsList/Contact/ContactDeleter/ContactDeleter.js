@@ -1,17 +1,19 @@
 import React from 'react';
 
-import { connect } from 'react-redux';
+import styles from './ContactDeleter.module.scss';
 
-import { removeContact } from '../../../../redux';
-
-const ContactDeleter = ({ contactID, dispatch }) => {
+const ContactDeleter = ({ deleteContact }) => {
   return (
-    <div className="ContactDeleter">
-      <button type="button" onClick={() => dispatch(removeContact(contactID))}>
-        delete
+    <div className={styles.ContactDeleter}>
+      <button
+        className={styles['ContactDeleter-btn']}
+        type="button"
+        onClick={deleteContact}
+      >
+        <span className={styles['ContactDeleter-btn-text']}>&#x292B;</span>
       </button>
     </div>
   );
 };
 
-export default connect()(ContactDeleter);
+export default ContactDeleter;
