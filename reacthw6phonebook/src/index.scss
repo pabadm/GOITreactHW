@@ -1,0 +1,120 @@
+@import '~sanitize.css';
+@import '~sanitize.css/forms.css';
+@import '~sanitize.css/typography.css';
+/* писать только после этих импортов */
+
+.Phonebook {
+  box-sizing: border-box;
+  margin: 2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+
+  box-shadow: 0px 0px 0.8rem 0.2rem rgb(125, 125, 125);
+  border-radius: 0.25rem;
+
+  width: 90%;
+  width: calc(100%-4rem);
+
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    width: 50%;
+  }
+  &-title {
+    color: #3645ab;
+    font-style: none;
+    font-weight: 800;
+    font-family: sans-serif;
+
+    margin: 0;
+    padding-bottom: 0.5rem;
+    width: 90%;
+    margin: auto;
+
+    &-appear {
+      opacity: 0;
+      &-done {
+        opacity: 1;
+      }
+      &-active {
+        opacity: 1;
+        transition: opacity 500ms;
+      }
+    }
+  }
+}
+
+.Contact {
+  &-exit {
+    // width: 90%;
+    opacity: 1;
+    max-height: 100vh;
+    &-done {
+      // width: 0;
+      opacity: 0;
+      max-height: 0;
+    }
+    &-active {
+      // width: 0;
+      opacity: 0;
+      max-height: 0;
+      transition: all 500ms linear;
+    }
+  }
+  &-appear {
+    opacity: 0;
+    max-height: 0;
+    &-done {
+      opacity: 1;
+      max-height: 100vh;
+    }
+    &-active {
+      // width: 0;
+      opacity: 1;
+      max-height: 100vh;
+      transition: all 500ms linear;
+    }
+  }
+}
+
+.Filter {
+  &-enter {
+    width: 0;
+    opacity: 0;
+    max-height: 0;
+    &-done {
+      width: 90%;
+      opacity: 1;
+      max-height: 40rem;
+      display: block;
+    }
+    &-active {
+      width: 90%;
+      max-height: 40rem;
+      opacity: 1;
+      transition: all 500ms;
+    }
+  }
+  &-exit {
+    width: 90%;
+    opacity: 1;
+    max-height: 40rem;
+    &-done {
+      width: 0;
+      opacity: 0;
+      max-height: 0;
+      display: none;
+    }
+    &-active {
+      width: 0;
+      opacity: 0;
+      max-height: 0;
+      transition: all 500ms linear;
+    }
+  }
+}

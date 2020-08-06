@@ -4,6 +4,7 @@
 # dependencies
 /node_modules
 /.pnp
+/tstest
 .pnp.js
 /webpack-react-education-kit
 # testing
